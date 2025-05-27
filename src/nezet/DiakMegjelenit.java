@@ -181,10 +181,8 @@ public class DiakMegjelenit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcmDiakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmDiakActionPerformed
-        int index = jcmDiak.getSelectedIndex();
-        if (index >= 0 && index < diakok.size()) {
+        int index = jcmDiak.getSelectedIndex();       
             megjelenit(diakok.get(index));
-        }
     }//GEN-LAST:event_jcmDiakActionPerformed
 
     private void jmnBetoltesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnBetoltesFileActionPerformed
