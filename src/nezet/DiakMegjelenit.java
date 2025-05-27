@@ -181,8 +181,8 @@ public class DiakMegjelenit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcmDiakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmDiakActionPerformed
-        int index = jcmDiak.getSelectedIndex();       
-            megjelenit(diakok.get(index));
+        int index = jcmDiak.getSelectedIndex();
+        megjelenit(diakok.get(index));
     }//GEN-LAST:event_jcmDiakActionPerformed
 
     private void jmnBetoltesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnBetoltesFileActionPerformed
@@ -193,9 +193,18 @@ public class DiakMegjelenit extends javax.swing.JFrame {
                 String sor = sorok.get(sorokIndex);
                 Diak diak = new Diak(sor);
                 diakok.add(diak);
-                String id = String.valueOf(diak.getId());
-                jcmDiak.addItem(id);
-                megjelenit(diak);
+
+               String idTantargy = diak.getId() + " - " + diak.getTargy();
+                boolean szerepel = false;
+
+                for (int j = 0; j < jcmDiak.getItemCount(); j++) {
+                    if (jcmDiak.getItemAt(j).equals(idTantargy)) {
+                        szerepel = true;
+                    }
+                }
+                if (!szerepel) {
+                    jcmDiak.addItem(idTantargy);
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(DiakMegjelenit.class.getName()).log(Level.SEVERE, null, ex);
