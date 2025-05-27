@@ -181,21 +181,24 @@ public class DiakMegjelenit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcmDiakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmDiakActionPerformed
-        int index = jcmDiak.getSelectedIndex();       
-            megjelenit(diakok.get(index));
+        int index = jcmDiak.getSelectedIndex();
+        megjelenit(diakok.get(index));
     }//GEN-LAST:event_jcmDiakActionPerformed
 
     private void jmnBetoltesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnBetoltesFileActionPerformed
         try {
             List<String> sorok = Files.readAllLines(Path.of("diakok.csv"));
+            List<String> ismetlodok = new ArrayList<>();
 
             for (int sorokIndex = 1; sorokIndex < sorok.size(); sorokIndex++) {
                 String sor = sorok.get(sorokIndex);
                 Diak diak = new Diak(sor);
                 diakok.add(diak);
                 String id = String.valueOf(diak.getId());
-                jcmDiak.addItem(id);
-                megjelenit(diak);
+                if (!ismetlodok.contains(id)) {
+                    jcmDiak.addItem(id);
+                    ismetlodok.add(id);
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(DiakMegjelenit.class.getName()).log(Level.SEVERE, null, ex);
