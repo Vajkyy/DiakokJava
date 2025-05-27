@@ -195,16 +195,8 @@ public class DiakMegjelenit extends javax.swing.JFrame {
                 diakok.add(diak);
 
                String idTantargy = diak.getId() + " - " + diak.getTargy();
-                boolean szerepel = false;
-
-                for (int j = 0; j < jcmDiak.getItemCount(); j++) {
-                    if (jcmDiak.getItemAt(j).equals(idTantargy)) {
-                        szerepel = true;
-                    }
-                }
-                if (!szerepel) {
-                    jcmDiak.addItem(idTantargy);
-                }
+               jcmDiak.addItem(idTantargy);
+                megjelenit(diak);
             }
         } catch (IOException ex) {
             Logger.getLogger(DiakMegjelenit.class.getName()).log(Level.SEVERE, null, ex);
