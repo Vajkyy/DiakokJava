@@ -187,17 +187,24 @@ public class DiakMegjelenit extends javax.swing.JFrame {
 
     private void jmnBetoltesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnBetoltesFileActionPerformed
         try {
-            List<String> sorok = Files.readAllLines(Path.of("diakok.csv"));
-            List<String> ismetlodok = new ArrayList<>();
+            List<String> sorok = Files.readAllLines(Path.of("diakok.csv"));            
 
             for (int sorokIndex = 1; sorokIndex < sorok.size(); sorokIndex++) {
                 String sor = sorok.get(sorokIndex);
                 Diak diak = new Diak(sor);
                 diakok.add(diak);
+
                 String id = String.valueOf(diak.getId());
-                if (!ismetlodok.contains(id)) {
+                boolean szerepel = false;
+
+                for (int j = 0; j < jcmDiak.getItemCount(); j++) {
+                    if (jcmDiak.getItemAt(j).equals(id)) {
+                        szerepel = true;
+                    }
+                }
+
+                if (!szerepel) {
                     jcmDiak.addItem(id);
-                    ismetlodok.add(id);
                 }
             }
         } catch (IOException ex) {
